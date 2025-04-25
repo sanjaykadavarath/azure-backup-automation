@@ -3,6 +3,8 @@
 
 This repository contains the configuration and scripts needed to automate the backup and recovery of Azure VMs using the Azure Recovery Services Vault and Automation.
 
+You just need to follow the shellscript file.
+
 ## Prerequisites
 
 - **Azure Subscription**: You must have an active Azure account.
@@ -58,6 +60,3 @@ az backup protection enable-for-vm --vault-name $vaultName --resource-group $res
 echo "VM registered and backup enabled successfully."
 ```
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
