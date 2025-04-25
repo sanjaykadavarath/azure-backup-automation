@@ -1,0 +1,9 @@
+# Ignore Visual Studio Code settings
+.vscode/
+
+# Ignore PowerShell session logs
+*.log
+
+# Ignore Azure credentials or any sensitive information
+*.json
+*.xml
