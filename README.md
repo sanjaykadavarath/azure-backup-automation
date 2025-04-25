@@ -1,5 +1,7 @@
-# azure-backup-automation
-Automated backup and recovery solution for Azure VMs using Azure Recovery Services Vault and Azure Automation. It schedules daily backups, monitors backup job statuses, and sends email notifications for success or failure. Includes PowerShell script for custom alerts and easy setup instructions.
+
+# Azure Backup Automation
+
+This repository contains the configuration and scripts needed to automate the backup and recovery of Azure VMs using the Azure Recovery Services Vault and Automation.
 
 ## Prerequisites
 
@@ -26,11 +28,35 @@ Automated backup and recovery solution for Azure VMs using Azure Recovery Servic
 4. **Test**:
     - Perform a manual backup or simulate a failure and check that email alerts are being sent as expected.
 
-## Files in This Repository
+5. **Files in This Repository**:
+    - `backup_alert_runbook.ps1`: PowerShell script used in the Azure Automation Runbook to send email notifications.
+    - `backup_setup.sh`: Bash script to help automate basic Azure VM and vault setup.
+    - `.gitignore`: Gitignore file to avoid pushing unnecessary files.
+    - `README.md`: This file with setup instructions.
 
-- `backup_alert_runbook.ps1`: PowerShell script used in the Azure Automation Runbook to send email notifications.
-- `.gitignore`: Gitignore file to avoid pushing unnecessary files.
-- `README.md`: This file with setup instructions.
+6. **Optional - Use Bash Script for Initial Setup**:
+    - Run the following Bash script using Azure CLI to deploy a VM and Recovery Services Vault.
+
+```bash
+#!/bin/bash
+
+# Variables
+resourceGroup="BackupDemoRG"
+location="eastus"
+vaultName="BackupVaultDemo"
+vmName="BackupVM"
+
+# Create Resource Group
+az group create --name $resourceGroup --location $location
+
+# Create Recovery Services Vault
+az backup vault create --name $vaultName --resource-group $resourceGroup --location $location
+
+# Register VM to vault
+az backup protection enable-for-vm --vault-name $vaultName --resource-group $resourceGroup --vm $vmName --policy-name DefaultPolicy
+
+echo "VM registered and backup enabled successfully."
+```
 
 ## License
 
